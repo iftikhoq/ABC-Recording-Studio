@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="text-center">Edit album</h1>
+<div class="container d-flex justify-content-center align-items-center shadow-lg" style="width: 80%; height:80%;">
+    <form method="post" class="d-flex flex-column">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="albumName">Album Name</label>
+            <input type="text" class="form-control" id="albumName" name="name" value="{{ album.name }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="releaseDate">Release Date</label>
+            <input type="date" class="form-control" id="releaseDate" name="release_date" value="{{ release_date }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="rating">Rating</label>
+            <select name="rating" id="rating" class="form-control">
+                <option value="1" {% if album.rating == 1 %}selected{% endif %}>1</option>
+                <option value="2" {% if album.rating == 2 %}selected{% endif %}>2</option>
+                <option value="3" {% if album.rating == 3 %}selected{% endif %}>3</option>
+                <option value="4" {% if album.rating == 4 %}selected{% endif %}>4</option>
+                <option value="5" {% if album.rating == 5 %}selected{% endif %}>5</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>        
+</div>
+
+{% endblock %}

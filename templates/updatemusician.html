@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="text-center">Edit musician</h1>
+<div class="container d-flex justify-content-center pt-2 pb-2 align-items-center  shadow-lg" style="width: 60%;">
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="musicianName">Full Name</label>
+        <input type="text" class="form-control" id="musicianName" value="{{ musician.first_name }} {{ musician.last_name }}" disabled>
+    </div>
+    
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{ musician.email }}">
+    </div>
+    
+    <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="number" class="form-control" id="phoneNumber" name="phone_number" value="{{ musician.phone_number }}">
+    </div>
+    
+    <div class="form-group">
+        <label for="instrumentType">Instrument Type</label>
+        <select name="instrument_type" id="instrumentType" class="form-control">
+            <option value="guitar" {% if musician.instrument_type == 'guitar' %}selected{% endif %}>Guitar</option>
+            <option value="piano" {% if musician.instrument_type == 'piano' %}selected{% endif %}>Piano</option>
+            <option value="other" {% if musician.instrument_type == 'other' %}selected{% endif %}>Other</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+</div>
+{% endblock %}
